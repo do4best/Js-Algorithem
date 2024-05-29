@@ -35,4 +35,11 @@ function calculateTotalSaleswithTex(product,taxRate){
     return parseFloat(totalSalesWithTax.toFixed(2));
 }
 
-export{titleCase,reverseString,countVowal,calculateTotalSaleswithTex}
+////// high order array function
+
+function findEvenNumber() { Array.filter((num)=>{
+    return num % 2 === 0;
+})}
+
+
+export{titleCase,reverseString,countVowal,calculateTotalSaleswithTex,findEvenNumber}
