@@ -30,7 +30,7 @@ function countVowal(str){
 }
 function calculateTotalSaleswithTex(product,taxRate){
     const totalSales = product.reduce((sum,product)=>sum + product.price * product.quantity,0)
-    const taxAmount = (totalSales*taxRate)/100
+    const taxAmount = (totalSales*taxRate)/100 
     const totalSalesWithTax = totalSales + taxAmount
     return parseFloat(totalSalesWithTax.toFixed(2));
 }
@@ -41,5 +41,20 @@ function findEvenNumber() { Array.filter((num)=>{
     return num % 2 === 0;
 })}
 
+function sumofEvenSquare(numbers){
+    const evenSquare = numbers.filter((num)=> num % 2 === 0).map((num)=>num**2).reduce((sum,square)=> sum+square,0);
+    return evenSquare;
+}
 
-export{titleCase,reverseString,countVowal,calculateTotalSaleswithTex,findEvenNumber}
+function highscoreWording (str){
+    const words = str.split('')
+    const scores = words.map((word)=>{
+        let score=0; 
+        for(const letter of word){
+            score += letter.charCodeAt(0) - 96;
+        }
+        
+    })
+    return scores
+}
+export{titleCase,reverseString,countVowal,calculateTotalSaleswithTex,findEvenNumber,sumofEvenSquare,highscoreWording}

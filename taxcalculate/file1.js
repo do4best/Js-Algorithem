@@ -1,4 +1,4 @@
-import {titleCase,reverseString,countVowal,calculateTotalSaleswithTex,findEvenNumber} from './module1.js';
+import {titleCase,reverseString,countVowal,calculateTotalSaleswithTex,findEvenNumber,sumofEvenSquare,highscoreWording} from './module1.js';
 
 let arr = [1,2,3,4,5,6,7,8,9,10]
 
@@ -32,3 +32,7 @@ console.log(result)
 console.log(titleCase("hello"))
 console.log(reverseString("my name is meer"))
 console.log(countVowal("my name is afzal"))
+ const result1 = sumofEvenSquare([1,2,3,4,5,6,7,8,9,10])
+ console.log(result1)
+ let fine =highscoreWording("This is strange")
+console.log(fine)
