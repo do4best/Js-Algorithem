@@ -53,6 +53,7 @@ function highscoreWording (str){
         for(const letter of word){
             score += letter.charCodeAt(0) - 96;
         }
+        return score
         
     })
     return scores
