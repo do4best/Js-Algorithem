@@ -21,3 +21,9 @@ function countDown1(num){
 }
 // countDown(10)
 console.log(countDown1(90) + " Hello")
+
+const reverseString=(str)=> str===''?'':reverseString(str.substr(1) + str.charAt(0).val())
+
+
+
+console.log(reverseString("Bonias Noches"))
