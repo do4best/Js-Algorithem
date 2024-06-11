@@ -1,29 +1,33 @@
-
-function countDown(num){
-    // if(num >= 20){
-    //     console.log("All is done")
-    //     return;
-    // }
-    // console.log(num)
-    // num++;
-    // countDown(num)
-    // if(num === 1){
-    //     console.log(`countDown(${num}) return 1`)
-    //     return 1;
-    // }
-    // console.log(`countDown(${num}) calls countDown(${num-1}) + ${num}`)
-    // const result= num + countDown(num-1)
-    // console.log(`countDown(${num}) return ${result}`)
-    // return result;
+function recursion1(num){
+    if(num <= 1){
+        console.log("All Done")
+        return;
+    }
+    console.log(num)
+    num--;
+    recursion1(num)
 }
-function countDown1(num){
-    return (num === 1)?1:num+countDown1(num-1)
+function sumUp(num){
+    if(num === 1){
+        return 1;
+    }
+    return num + sumUp(num-1)
 }
-// countDown(10)
-console.log(countDown1(90) + " Hello")
+recursion1(15)
+console.log(sumUp(20))
 
-const reverseString=(str)=> str===''?'':reverseString(str.substr(1) + str.charAt(0).val())
-
-
-
-console.log(reverseString("Bonias Noches"))
+function reverseString(str){
+    if(str === ''){
+        return '';
+    }
+    return reverseString(str.substr(1)) + str.charAt(0)
+}
+function fabonacci(num){
+    console.log(`Calculating Fabonachi(${num})`)
+    if(num < 2){
+        return num;
+    }
+    return fabonacci(num-1) + fabonacci(num-2)
+}
+console.log(reverseString("my name is train"))
+console.log(fabonacci(20))
