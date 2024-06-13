@@ -32,12 +32,29 @@
 // console.log(reverseString("my name is train"))
 // console.log(fabonacci(20))
 
-function factorial(num){
-    if(num === 0 || num === 1 ){
+// function factorial(num){
+//     if(num === 0 || num === 1 ){
+//         return 1;
+//     }
+//     console.log(` ${num} factorial is ${num*factorial(num-1)}` )
+//     return num * factorial(num-1)
+// }
+
+// console.log(factorial(6))
+
+function power(base,exponent){
+    if(exponent === 1){
         return 1;
     }
-    console.log(` ${num} factorial is ${num*factorial(num-1)}` )
-    return num * factorial(num-1)
+    return exponent * power(base,exponent-1)
+}
+console.log(power(2,4))
+
+function arrSum(arr){
+    if(arr.length === 0){
+        return 0;
+    }
+    return arr[0] + arrSum(arr.slice(1).split(''))
 }
 
-console.log(factorial(6))
+console.log(arrSum(["go","with","wind"]))
