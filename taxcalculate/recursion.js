@@ -87,3 +87,25 @@ function flattenArray(arr){
     
 }
 console.log(flattenArray([1,[2],[3],4]))
+
+// permituation method means matching different letter in a string
+function permituation(str){
+    let result=[] // define a local empty array
+    // here it go for the condation 
+    if(str.length === 0){
+        result.push('') // if result become equall to 0 then it should be stacked
+        return result;
+    }
+    for(let i=0; i<str.length; i++){  // loop it through the given string 
+        const firstChar = str[i] // store the first character in the variable firstCharacter
+        const restOfString = str.slice(0,i) + str.slice(i + 1) // since the first letter is storred the remaining letters should be stored 
+        const sumPermi = permituation(restOfString)// the recusive step shouuld store in sumPermi
+    for(let j=0; j<sumPermi.length; j++){ // another loop shuld be defined on sumperi
+        result.push(firstChar + sumPermi[j]) // it should be stacked in result array with first charackter as stored and remaing with recursive thing
+    }
+    }
+    return result;
+
+
+}
+console.log(permituation("123456789"))
