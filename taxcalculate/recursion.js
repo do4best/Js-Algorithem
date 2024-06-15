@@ -54,7 +54,36 @@ function arrSum(arr){
     if(arr.length === 0){
         return 0;
     }
-    return arr[0] + arrSum(arr.slice(1).split(''))
+    return arr[0] + arrSum(arr.slice(1))
 }
 
 console.log(arrSum(["go","with","wind"]))
+/// range using recursion
+function numberRange(start,end){ // make range an array to start and end 
+     if(start === end){ // return true if start and end is equal
+        return [start] // if true it should return as array
+    }
+    const num = numberRange(start,end -1) // initialize a variable with assigned numberRange( start and end, the end variable will decrement every time by 1 )
+    num.push(end)// from the end it will move to array stack
+    return num; // 
+}
+console.log(numberRange(1,9))
+
+// defining multiple array into a single one
+function flattenArray(arr){
+    let result =[] // define an empty array
+    for(let item in arr){ // loop through the values
+        // here we go for the condation
+        if(Array.isArray(item)) // checking from the loop that if an item is an array
+        {
+        result = result.concat(flattenArray(item)) // make the array to concatenation through recursion
+        }else{
+            result.push(item) // otherwise move it to the stack
+
+            }    }
+        return result
+
+
+    
+}
+console.log(flattenArray([1,[2],[3],4]))
