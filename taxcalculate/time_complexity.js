@@ -36,7 +36,7 @@ function sumAll(arr){
     }
     return sum;
 }
-let array = [1,2,3,4,5,6]
+let array = [1,2,3,4,5]
 console.time(" time 3");
 console.log(sumAll(array))
 console.timeEnd(" time 3")
@@ -45,3 +45,44 @@ let array1 = Array.from({length:1000},(_,index)=>index + 1)
 console.time(" time 4");
 console.log(sumAll(array1))
 console.timeEnd(" time 4")
+/// quadric time complexity O(n^2)
+
+function sumquadric(arr){
+    let sum=1;
+    let sum1=1;
+    for(let i=0; i<arr.length; i++){
+        sum += arr[i]
+        for(let j=0; j<arr.length; j++){
+            sum1 += arr[j]
+        }
+    }
+    return sum + sum1
+}
+console.time(" time 4");
+
+console.log( "The total is given as" +array.reduce((total,num) =>{return total + num},0)+ ", " + sumquadric(array))
+console.timeEnd(" time 4")
+
+let array2 = Array.from({length:1000},(_,index)=>index + 1)
+console.time(" time 5");
+console.log(sumquadric(array2))
+console.timeEnd(" time 5")
+// logermathic 
+function findPower(base,exponent){
+    if(exponent === 0){
+        return 1;
+    }
+    if(exponent % 2 === 0){
+        const halfPower = findPower(base,exponent/2);
+        return halfPower * halfPower;
+    }else{
+        const halfPower = findPower(base,(exponent-1)/2)
+        return base *halfPower * halfPower
+    }
+}
+console.time("")
+console.log(findPower(2,100))
+console.timeEnd("")
+console.time("")
+console.log(findPower(2,1000))
+console.timeEnd("")
