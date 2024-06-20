@@ -1,7 +1,7 @@
 // constant time complexity
 // linear time commplexity
 // quadric time complexity
-// algorithemic time complexity.
+// lgorithemic time complexity.
 // O(1) contant
 // O(n) // linear
 // O(n^2) // quadric
@@ -86,3 +86,19 @@ console.timeEnd("")
 console.time("")
 console.log(findPower(2,1000))
 console.timeEnd("")
+//finding max sub array sum with  given condation
+function maxSubArraysum(arr,k){
+    let maxSub=0; // initializ max sub
+    for(let i=0; i<=arr.length-k; i++){ //loop through array length with given condation
+        let currnuntSum = 0;// to store the value we need to initialize a variable
+        for(let j=i; j<i + k; j++){ // to check the value of given condation we need to make another loop
+            console.log("nice" + arr[j])
+            currnuntSum += arr[j] // store the value of second loop  we need to add to in currentsum
+        }// end of innerloop
+        maxSub = Math.max(maxSub,currnuntSum) // let Math.max() method decide the max value in  maxsub
+    }
+    return maxSub;
+} 
+
+let mrr=[1,2,3,4,5,6]
+console.log(maxSubArraysum(arr,3))
