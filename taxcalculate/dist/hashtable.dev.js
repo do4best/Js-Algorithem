@@ -1,13 +1,5 @@
 "use strict";
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -23,17 +15,66 @@ index(key) is the main part of the game is
 5-keys() return all the keys in the table
 6-values() return all the value in a index
 */
-var myMap = new Map([[1, "Meer Afzal"], [2, "do4best@gmail"], [3, "0320-4522701"]]);
-console.log(myMap.get(3));
-console.log(myMap.size);
-myMap.set(4, "Lahore");
-console.log(myMap);
-console.log(myMap.values());
+// const myMap = new Map([
+//     [1,"Meer Afzal"],
+//     [2,"do4best@gmail"],
+//     [3,"0320-4522701"]
+// ]);
+// console.log(myMap.get(3))
+// console.log(myMap.size)
+// myMap.set(4,"Lahore")
+// console.log(myMap)
+// console.log(myMap.values())
+// for(let [key,value] in myMap){
+// console.log(key, value)
+// }
+// 22-06-24
+// Meer Afzal
+// understanding a frequency counter function
+function wordsFrquencyCounter(str) {
+  // take string as parameter
+  var words = str.toLowerCase().split(/\W+/); // make the string lowercas and count whitespace
 
-for (var _ref in myMap) {
-  var _ref2 = _slicedToArray(_ref, 2);
+  var wordsFrquency = new Map(); // initiliaze map object
 
-  var key = _ref2[0];
-  var value = _ref2[1];
-  console.log(key, value);
-}
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var word = _step.value;
+      // loop through the value of given string
+      if (word === "") continue; // if there is a space between a sentence make it continue
+
+      if (wordsFrquency.has(word)) {
+        // also check that it has given value by a sentence and if it is true
+        wordsFrquency.set(word, wordsFrquency.get(word) + 1); // make them set in map object where is second argument return the value and increment
+      } else {
+        // if become false
+        wordsFrquency.set(word, 1); // then set the loop value with value of 1 and it happen whem there is no value
+      } // end of the if
+
+    } // end of the for loop
+
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return wordsFrquency;
+} // end of function.
+
+
+console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"));
+console.log(wordsFrquencyCounter(""));

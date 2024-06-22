@@ -12,16 +12,35 @@ index(key) is the main part of the game is
 5-keys() return all the keys in the table
 6-values() return all the value in a index
 */
-const myMap = new Map([
-    [1,"Meer Afzal"],
-    [2,"do4best@gmail"],
-    [3,"0320-4522701"]
-]);
-console.log(myMap.get(3))
-console.log(myMap.size)
-myMap.set(4,"Lahore")
-console.log(myMap)
-console.log(myMap.values())
-for(let [key,value] in myMap){
-console.log(key, value)
-}
+// const myMap = new Map([
+//     [1,"Meer Afzal"],
+//     [2,"do4best@gmail"],
+//     [3,"0320-4522701"]
+// ]);
+// console.log(myMap.get(3))
+// console.log(myMap.size)
+// myMap.set(4,"Lahore")
+// console.log(myMap)
+// console.log(myMap.values())
+// for(let [key,value] in myMap){
+// console.log(key, value)
+// }
+// 22-06-24
+// Meer Afzal
+// understanding a frequency counter function
+function wordsFrquencyCounter(str){// take string as parameter
+    const words = str.toLowerCase().split(/\W+/); // make the string lowercas and count whitespace
+    const wordsFrquency = new Map() // initiliaze map object
+    for(const word of words){ // loop through the value of given string
+        if(word === "") continue; // if there is a space between a sentence make it continue
+        if(wordsFrquency.has(word)){ // also check that it has given value by a sentence and if it is true
+            wordsFrquency.set(word,wordsFrquency.get(word) + 1);  // make them set in map object where is second argument return the value and increment
+        }else{ // if become false
+            wordsFrquency.set(word,1) // then set the loop value with value of 1 and it happen whem there is no value
+        }// end of the if
+    }// end of the for loop
+    return wordsFrquency;
+
+} // end of function.
+console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"))
+console.log(wordsFrquencyCounter(""))
