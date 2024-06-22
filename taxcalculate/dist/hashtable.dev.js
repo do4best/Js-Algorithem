@@ -1,5 +1,13 @@
 "use strict";
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -77,4 +85,49 @@ function wordsFrquencyCounter(str) {
 
 
 console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"));
-console.log(wordsFrquencyCounter(""));
+console.log(wordsFrquencyCounter("")); // phonenumber directory
+
+function phoneDirectory(phones) {
+  // phone directory function to analyze the given array with name and phone no
+  var directory = new Map(); // fist initilize the directory with map Object
+
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = phones[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var phone = _step2.value;
+
+      // loop through the given value
+      var _phone$split = phone.split(":"),
+          _phone$split2 = _slicedToArray(_phone$split, 2),
+          name = _phone$split2[0],
+          _phones = _phone$split2[1]; // destructured it with name and given value 
+
+
+      directory.set(name, _phones); // then set them in index and phones value
+    } // end of for loop
+
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  return directory;
+} // end of phone directory
+
+
+var phoneNumbers = ['Meer:03204522701', 'faisal:0320999299'];
+var result = phoneDirectory(phoneNumbers);
+console.log(result.get('faisal'));

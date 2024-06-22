@@ -44,3 +44,19 @@ function wordsFrquencyCounter(str){// take string as parameter
 } // end of function.
 console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"))
 console.log(wordsFrquencyCounter(""))
+
+// phonenumber directory
+function phoneDirectory(phones){ // phone directory function to analyze the given array with name and phone no
+    const directory = new Map() // fist initilize the directory with map Object
+    for(const phone of phones){ // loop through the given value
+        const [name,phones] = phone.split(":") // destructured it with name and given value 
+        directory.set(name,phones) // then set them in index and phones value
+    }// end of for loop
+    return directory;
+}// end of phone directory
+const phoneNumbers=[
+    'Meer:03204522701',
+    'faisal:0320999299'
+]
+const result = phoneDirectory(phoneNumbers) 
+console.log(result.get('faisal'))
