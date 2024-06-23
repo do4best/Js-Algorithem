@@ -1,13 +1,5 @@
 "use strict";
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -39,11 +31,42 @@ index(key) is the main part of the game is
 // 22-06-24
 // Meer Afzal
 // understanding a frequency counter function
-function wordsFrquencyCounter(str) {
-  // take string as parameter
-  var words = str.toLowerCase().split(/\W+/); // make the string lowercas and count whitespace
-
-  var wordsFrquency = new Map(); // initiliaze map object
+// function wordsFrquencyCounter(str){// take string as parameter
+//     const words = str.toLowerCase().split(/\W+/); // make the string lowercas and count whitespace
+//     const wordsFrquency = new Map() // initiliaze map object
+//     for(const word of words){ // loop through the value of given string
+//         if(word === "") continue; // if there is a space between a sentence make it continue
+//         if(wordsFrquency.has(word)){ // also check that it has given value by a sentence and if it is true
+//             wordsFrquency.set(word,wordsFrquency.get(word) + 1);  // make them set in map object where is second argument return the value and increment
+//         }else{ // if become false
+//             wordsFrquency.set(word,1) // then set the loop value with value of 1 and it happen whem there is no value
+//         }// end of the if
+//     }// end of the for loop
+//     return wordsFrquency;
+// } // end of function.
+// console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"))
+// console.log(wordsFrquencyCounter(""))
+// // phonenumber directory
+// function phoneDirectory(phones){ // phone directory function to analyze the given array with name and phone no
+//     const directory = new Map() // fist initilize the directory with map Object
+//     for(const phone of phones){ // loop through the given value
+//         const [name,phones] = phone.split(":") // destructured it with name and given value 
+//         directory.set(name,phones) // then set them in index and phones value
+//     }// end of for loop
+//     return directory;
+// }// end of phone directory
+// const phoneNumbers=[
+//     'Meer:03204522701',
+//     'faisal:0320999299'
+// ]
+// const result = phoneDirectory(phoneNumbers) 
+// console.log(result.get('faisal'))
+// Meer Afzal
+// 23-06-24
+/// anagram means grouping similiar spelling words
+function anagramGrouping(words) {
+  // initializing the funcion 
+  var anagramGroups = new Map(); // declaring local Map() Object
 
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
@@ -52,19 +75,17 @@ function wordsFrquencyCounter(str) {
   try {
     for (var _iterator = words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var word = _step.value;
-      // loop through the value of given string
-      if (word === "") continue; // if there is a space between a sentence make it continue
+      // looping through the given parameters
+      var sortedGrouping = word.split('').sort().join(''); // store the value fromm looping firstly make them split then sort and then rejoin with space parameter
 
-      if (wordsFrquency.has(word)) {
-        // also check that it has given value by a sentence and if it is true
-        wordsFrquency.set(word, wordsFrquency.get(word) + 1); // make them set in map object where is second argument return the value and increment
+      if (anagramGroups.has(sortedGrouping)) {
+        // check with if condation that map Object with the help of has method that if the above store value has the object if true proceed with following instructions
+        anagramGroups.get(sortedGrouping).push(word); // if true means it will get the value and then push it into a stack ?how strange?
       } else {
-        // if become false
-        wordsFrquency.set(word, 1); // then set the loop value with value of 1 and it happen whem there is no value
-      } // end of the if
-
-    } // end of the for loop
-
+        // and if it is false 
+        anagramGroups.set(sortedGrouping, [word]); // then it should be set by Map the key and store the value in array "means make a new one"
+      }
+    }
   } catch (err) {
     _didIteratorError = true;
     _iteratorError = err;
@@ -80,54 +101,7 @@ function wordsFrquencyCounter(str) {
     }
   }
 
-  return wordsFrquency;
-} // end of function.
+  return Array.from(anagramGroups.values()); // and it should return as Array.from map object with value
+}
 
-
-console.log(wordsFrquencyCounter("my name is jhon and my country is pakistan"));
-console.log(wordsFrquencyCounter("")); // phonenumber directory
-
-function phoneDirectory(phones) {
-  // phone directory function to analyze the given array with name and phone no
-  var directory = new Map(); // fist initilize the directory with map Object
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = phones[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var phone = _step2.value;
-
-      // loop through the given value
-      var _phone$split = phone.split(":"),
-          _phone$split2 = _slicedToArray(_phone$split, 2),
-          name = _phone$split2[0],
-          _phones = _phone$split2[1]; // destructured it with name and given value 
-
-
-      directory.set(name, _phones); // then set them in index and phones value
-    } // end of for loop
-
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-        _iterator2["return"]();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  return directory;
-} // end of phone directory
-
-
-var phoneNumbers = ['Meer:03204522701', 'faisal:0320999299'];
-var result = phoneDirectory(phoneNumbers);
-console.log(result.get('faisal'));
+console.log(anagramGrouping(['cat', 'act', 'dog', 'god', 'tac'])); // testing of anargrouping words example
