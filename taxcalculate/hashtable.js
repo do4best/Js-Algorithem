@@ -77,3 +77,30 @@ function anagramGrouping(words){// initializing the funcion
 }
 
 console.log(anagramGrouping(['cat','act','dog','god','tac'])) // testing of anargrouping words example
+// 24-06-24
+// set example
+const fineSet = new Set(["Meer","Afzal","shah"])
+fineSet.add(20)
+console.log(fineSet.size)
+console.log(fineSet.values())
+
+function symetricDifference(arr1,arr2){ // this function realy strange to find the same element and unique element as it take two parameters
+  const set1 = new Set(arr1); // define a set1 and pass first parameter in it
+  const set2 = new Set(arr2) // define second set2 and pass second patameter in it
+// the following algo is written to find same element in two sets
+  const arr=[]; // define an empty array
+  for(let num of arr1){ // first loop through the first parammeter of array
+    if(!set2.has(num)){ // impose a condation if in set2 the element not found while looping first paramter
+      arr.push(num) // it should be push to the empty array
+    }
+  }
+  
+  for(let num of arr2){ // same goes here loop through the second parameter of array
+    if(!set1.has(num)){ // if the element is not found in set 1
+      arr.push(num) // it should be push to the empty array
+    }
+  }
+  return arr;
+  //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
+}// end of function
+console.log(symetricDifference([1,2,3,4,5],[3,4,5,6])) // the question is why it did not include 6

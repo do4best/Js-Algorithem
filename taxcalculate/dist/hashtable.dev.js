@@ -105,3 +105,83 @@ function anagramGrouping(words) {
 }
 
 console.log(anagramGrouping(['cat', 'act', 'dog', 'god', 'tac'])); // testing of anargrouping words example
+// 24-06-24
+// set example
+
+var fineSet = new Set(["Meer", "Afzal", "shah"]);
+fineSet.add(20);
+console.log(fineSet.size);
+console.log(fineSet.values());
+
+function symetricDifference(arr1, arr2) {
+  // this function realy strange to find the same element and unique element as it take two parameters
+  var set1 = new Set(arr1); // define a set1 and pass first parameter in it
+
+  var set2 = new Set(arr2); // define second set2 and pass second patameter in it
+  // the following algo is written to find same element in two sets
+
+  var arr = []; // define an empty array
+
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = arr1[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var num = _step2.value;
+
+      // first loop through the first parammeter of array
+      if (!set2.has(num)) {
+        // impose a condation if in set2 the element not found while looping first paramter
+        arr.push(num); // it should be push to the empty array
+      }
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+        _iterator2["return"]();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = arr2[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var _num = _step3.value;
+
+      // same goes here loop through the second parameter of array
+      if (!set1.has(_num)) {
+        // if the element is not found in set 1
+        arr.push(_num); // it should be push to the empty array
+      }
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+        _iterator3["return"]();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  return arr; //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
+} // end of function
+
+
+console.log(symetricDifference([1, 2, 3, 4, 5], [3, 4, 5, 6])); // the question is why it did not include 6
