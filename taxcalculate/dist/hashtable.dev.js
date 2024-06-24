@@ -185,3 +185,23 @@ function symetricDifference(arr1, arr2) {
 
 
 console.log(symetricDifference([1, 2, 3, 4, 5], [3, 4, 5, 6])); // the question is why it did not include 6
+// find sum of two to targer the desired number
+
+function findSum(num, target) {
+  var numSet = new Set();
+
+  for (var i = 0; i < num.length; i++) {
+    var complement = target - num[i];
+
+    if (numSet.has(complement)) {
+      return [num.indexOf(complement), i];
+    }
+
+    numSet.add(num[i]);
+  }
+
+  return [];
+}
+
+var result = [7, 2, 3, 5, 6, 8];
+console.log(findSum(result, 8));

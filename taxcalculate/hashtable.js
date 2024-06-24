@@ -104,3 +104,18 @@ function symetricDifference(arr1,arr2){ // this function realy strange to find t
   //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
 }// end of function
 console.log(symetricDifference([1,2,3,4,5],[3,4,5,6])) // the question is why it did not include 6
+
+// find sum of two to targer the desired number
+function findSum(num,target){
+  const numSet = new Set();
+  for(let i=0; i<num.length; i++){
+    const complement = target - num[i]
+    if(numSet.has(complement)){
+      return [num.indexOf(complement),i]
+    }
+    numSet.add(num[i])
+  }
+  return []
+}
+const result=[7,2,3,5,6,8]
+console.log(findSum(result,8))
