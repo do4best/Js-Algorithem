@@ -63,59 +63,101 @@ index(key) is the main part of the game is
 // Meer Afzal
 // 23-06-24
 /// anagram means grouping similiar spelling words
-function anagramGrouping(words){// initializing the funcion 
- const anagramGroups = new Map(); // declaring local Map() Object
- for (const word of words){ // looping through the given parameters
-    const sortedGrouping = word.split('').sort().join(''); // store the value fromm looping firstly make them split then sort and then rejoin with space parameter
-   if(anagramGroups.has(sortedGrouping)){ // check with if condation that map Object with the help of has method that if the above store value has the object if true proceed with following instructions
-    anagramGroups.get(sortedGrouping).push(word) // if true means it will get the value and then push it into a stack ?how strange?
-   }else{ // and if it is false 
-    anagramGroups.set(sortedGrouping,[word]) // then it should be set by Map the key and store the value in array "means make a new one"
-   }
- }
- return Array.from(anagramGroups.values()) // and it should return as Array.from map object with value
-}
+// function anagramGrouping(words){// initializing the funcion 
+//  const anagramGroups = new Map(); // declaring local Map() Object
+//  for (const word of words){ // looping through the given parameters
+//     const sortedGrouping = word.split('').sort().join(''); // store the value fromm looping firstly make them split then sort and then rejoin with space parameter
+//    if(anagramGroups.has(sortedGrouping)){ // check with if condation that map Object with the help of has method that if the above store value has the object if true proceed with following instructions
+//     anagramGroups.get(sortedGrouping).push(word) // if true means it will get the value and then push it into a stack ?how strange?
+//    }else{ // and if it is false 
+//     anagramGroups.set(sortedGrouping,[word]) // then it should be set by Map the key and store the value in array "means make a new one"
+//    }
+//  }
+//  return Array.from(anagramGroups.values()) // and it should return as Array.from map object with value
+// }
 
-console.log(anagramGrouping(['cat','act','dog','god','tac'])) // testing of anargrouping words example
-// 24-06-24
-// set example
-const fineSet = new Set(["Meer","Afzal","shah"])
-fineSet.add(20)
-console.log(fineSet.size)
-console.log(fineSet.values())
+// console.log(anagramGrouping(['cat','act','dog','god','tac'])) // testing of anargrouping words example
+// // 24-06-24
+// // set example
+// const fineSet = new Set(["Meer","Afzal","shah"])
+// fineSet.add(20)
+// console.log(fineSet.size)
+// console.log(fineSet.values())
 
-function symetricDifference(arr1,arr2){ // this function realy strange to find the same element and unique element as it take two parameters
-  const set1 = new Set(arr1); // define a set1 and pass first parameter in it
-  const set2 = new Set(arr2) // define second set2 and pass second patameter in it
-// the following algo is written to find same element in two sets
-  const arr=[]; // define an empty array
-  for(let num of arr1){ // first loop through the first parammeter of array
-    if(!set2.has(num)){ // impose a condation if in set2 the element not found while looping first paramter
-      arr.push(num) // it should be push to the empty array
-    }
-  }
+// function symetricDifference(arr1,arr2){ // this function realy strange to find the same element and unique element as it take two parameters
+//   const set1 = new Set(arr1); // define a set1 and pass first parameter in it
+//   const set2 = new Set(arr2) // define second set2 and pass second patameter in it
+// // the following algo is written to find same element in two sets
+//   const arr=[]; // define an empty array
+//   for(let num of arr1){ // first loop through the first parammeter of array
+//     if(!set2.has(num)){ // impose a condation if in set2 the element not found while looping first paramter
+//       arr.push(num) // it should be push to the empty array
+//     }
+//   }
   
-  for(let num of arr2){ // same goes here loop through the second parameter of array
-    if(!set1.has(num)){ // if the element is not found in set 1
-      arr.push(num) // it should be push to the empty array
-    }
-  }
-  return arr;
-  //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
-}// end of function
-console.log(symetricDifference([1,2,3,4,5],[3,4,5,6])) // the question is why it did not include 6
+//   for(let num of arr2){ // same goes here loop through the second parameter of array
+//     if(!set1.has(num)){ // if the element is not found in set 1
+//       arr.push(num) // it should be push to the empty array
+//     }
+//   }
+//   return arr;
+//   //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
+// }// end of function
+// console.log(symetricDifference([1,2,3,4,5],[3,4,5,6])) // the question is why it did not include 6
 
-// find sum of two to targer the desired number
-function findSum(num,target){
-  const numSet = new Set();
-  for(let i=0; i<num.length; i++){
-    const complement = target - num[i]
-    if(numSet.has(complement)){
-      return [num.indexOf(complement),i]
+// // find sum of two to targer the desired number
+// function findSum(num,target){ // paramet an array and second one is find the desired value from the array
+//   const numSet = new Set(); //////// first define a set
+//   for(let i=0; i<num.length; i++){ // loop through the array
+//     const complement = target - num[i] // take the targeted sum from the looped array
+//     if(numSet.has(complement)){ // imposed the condation if in a set the desired target has the value
+//       return [num.indexOf(complement),i] // it should return the value as an array where the first parameter as index and second as ranged value
+//     }
+//     numSet.add(num[i]) // it should add the value in set data struncture
+//   }
+//   return []
+// }
+// const result=[7,2,3,5,6,8]
+// console.log(findSum(result,8))
+// 25-06-24
+// finding the longest sequence
+function findingLongestSequence(num){
+  const numSet = new Set(num);
+  let longestSequence = 0;
+  for (let num of numSet){
+    if(!numSet.has(num-1)){
+      let currentNum = num;
+      let currentSequence = 1;
+      while(numSet.has(currentNum+1)){
+        currentNum++;
+        currentSequence++;
+      }
+      longestSequence = Math.max(longestSequence,currentNum)
+
     }
-    numSet.add(num[i])
+   
   }
-  return []
+  return longestSequence;
 }
-const result=[7,2,3,5,6,8]
-console.log(findSum(result,8))
+console.log(findingLongestSequence([23,4,5,6,8,10,22,33,44]))
+// hash table example (custome new Map)
+class HashMap{ // declaring the hashMap
+  constructor(limit=14){ // constructor with default limit
+    this.storage=[]; // storage array 
+    this.limit=limit // assign the default limit which is 14
+  }
+  // private method
+  _has(key,max){ // declaring value and max limit
+    let hash=0; // local variable default 0
+    for(let i=0; i<key.length; i++){ // loop through the value 
+      hash += key.charCodeAt(i); // the local varible hash assigned with aschii character limit
+    }// end of four loop
+    return hash % max; // return hash with reminder against max
+
+  }// end of private method
+}
+// test value
+const hastTable = new HashMap();
+
+let result = hastTable._has('Jhon',hastTable.limit)
+console.log(result) 

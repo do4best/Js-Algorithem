@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -64,26 +70,81 @@ index(key) is the main part of the game is
 // Meer Afzal
 // 23-06-24
 /// anagram means grouping similiar spelling words
-function anagramGrouping(words) {
-  // initializing the funcion 
-  var anagramGroups = new Map(); // declaring local Map() Object
-
+// function anagramGrouping(words){// initializing the funcion 
+//  const anagramGroups = new Map(); // declaring local Map() Object
+//  for (const word of words){ // looping through the given parameters
+//     const sortedGrouping = word.split('').sort().join(''); // store the value fromm looping firstly make them split then sort and then rejoin with space parameter
+//    if(anagramGroups.has(sortedGrouping)){ // check with if condation that map Object with the help of has method that if the above store value has the object if true proceed with following instructions
+//     anagramGroups.get(sortedGrouping).push(word) // if true means it will get the value and then push it into a stack ?how strange?
+//    }else{ // and if it is false 
+//     anagramGroups.set(sortedGrouping,[word]) // then it should be set by Map the key and store the value in array "means make a new one"
+//    }
+//  }
+//  return Array.from(anagramGroups.values()) // and it should return as Array.from map object with value
+// }
+// console.log(anagramGrouping(['cat','act','dog','god','tac'])) // testing of anargrouping words example
+// // 24-06-24
+// // set example
+// const fineSet = new Set(["Meer","Afzal","shah"])
+// fineSet.add(20)
+// console.log(fineSet.size)
+// console.log(fineSet.values())
+// function symetricDifference(arr1,arr2){ // this function realy strange to find the same element and unique element as it take two parameters
+//   const set1 = new Set(arr1); // define a set1 and pass first parameter in it
+//   const set2 = new Set(arr2) // define second set2 and pass second patameter in it
+// // the following algo is written to find same element in two sets
+//   const arr=[]; // define an empty array
+//   for(let num of arr1){ // first loop through the first parammeter of array
+//     if(!set2.has(num)){ // impose a condation if in set2 the element not found while looping first paramter
+//       arr.push(num) // it should be push to the empty array
+//     }
+//   }
+//   for(let num of arr2){ // same goes here loop through the second parameter of array
+//     if(!set1.has(num)){ // if the element is not found in set 1
+//       arr.push(num) // it should be push to the empty array
+//     }
+//   }
+//   return arr;
+//   //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
+// }// end of function
+// console.log(symetricDifference([1,2,3,4,5],[3,4,5,6])) // the question is why it did not include 6
+// // find sum of two to targer the desired number
+// function findSum(num,target){ // paramet an array and second one is find the desired value from the array
+//   const numSet = new Set(); //////// first define a set
+//   for(let i=0; i<num.length; i++){ // loop through the array
+//     const complement = target - num[i] // take the targeted sum from the looped array
+//     if(numSet.has(complement)){ // imposed the condation if in a set the desired target has the value
+//       return [num.indexOf(complement),i] // it should return the value as an array where the first parameter as index and second as ranged value
+//     }
+//     numSet.add(num[i]) // it should add the value in set data struncture
+//   }
+//   return []
+// }
+// const result=[7,2,3,5,6,8]
+// console.log(findSum(result,8))
+// 25-06-24
+// finding the longest sequence
+function findingLongestSequence(num) {
+  var numSet = new Set(num);
+  var longestSequence = 0;
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var word = _step.value;
-      // looping through the given parameters
-      var sortedGrouping = word.split('').sort().join(''); // store the value fromm looping firstly make them split then sort and then rejoin with space parameter
+    for (var _iterator = numSet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var _num = _step.value;
 
-      if (anagramGroups.has(sortedGrouping)) {
-        // check with if condation that map Object with the help of has method that if the above store value has the object if true proceed with following instructions
-        anagramGroups.get(sortedGrouping).push(word); // if true means it will get the value and then push it into a stack ?how strange?
-      } else {
-        // and if it is false 
-        anagramGroups.set(sortedGrouping, [word]); // then it should be set by Map the key and store the value in array "means make a new one"
+      if (!numSet.has(_num - 1)) {
+        var currentNum = _num;
+        var currentSequence = 1;
+
+        while (numSet.has(currentNum + 1)) {
+          currentNum++;
+          currentSequence++;
+        }
+
+        longestSequence = Math.max(longestSequence, currentNum);
       }
     }
   } catch (err) {
@@ -101,107 +162,50 @@ function anagramGrouping(words) {
     }
   }
 
-  return Array.from(anagramGroups.values()); // and it should return as Array.from map object with value
+  return longestSequence;
 }
 
-console.log(anagramGrouping(['cat', 'act', 'dog', 'god', 'tac'])); // testing of anargrouping words example
-// 24-06-24
-// set example
+console.log(findingLongestSequence([23, 4, 5, 6, 8, 10, 22, 33, 44])); // hash table example (custome new Map)
 
-var fineSet = new Set(["Meer", "Afzal", "shah"]);
-fineSet.add(20);
-console.log(fineSet.size);
-console.log(fineSet.values());
+var HashMap =
+/*#__PURE__*/
+function () {
+  // declaring the hashMap
+  function HashMap() {
+    var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 14;
 
-function symetricDifference(arr1, arr2) {
-  // this function realy strange to find the same element and unique element as it take two parameters
-  var set1 = new Set(arr1); // define a set1 and pass first parameter in it
+    _classCallCheck(this, HashMap);
 
-  var set2 = new Set(arr2); // define second set2 and pass second patameter in it
-  // the following algo is written to find same element in two sets
+    // constructor with default limit
+    this.storage = []; // storage array 
 
-  var arr = []; // define an empty array
-
-  var _iteratorNormalCompletion2 = true;
-  var _didIteratorError2 = false;
-  var _iteratorError2 = undefined;
-
-  try {
-    for (var _iterator2 = arr1[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-      var num = _step2.value;
-
-      // first loop through the first parammeter of array
-      if (!set2.has(num)) {
-        // impose a condation if in set2 the element not found while looping first paramter
-        arr.push(num); // it should be push to the empty array
-      }
-    }
-  } catch (err) {
-    _didIteratorError2 = true;
-    _iteratorError2 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-        _iterator2["return"]();
-      }
-    } finally {
-      if (_didIteratorError2) {
-        throw _iteratorError2;
-      }
-    }
-  }
-
-  var _iteratorNormalCompletion3 = true;
-  var _didIteratorError3 = false;
-  var _iteratorError3 = undefined;
-
-  try {
-    for (var _iterator3 = arr2[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-      var _num = _step3.value;
-
-      // same goes here loop through the second parameter of array
-      if (!set1.has(_num)) {
-        // if the element is not found in set 1
-        arr.push(_num); // it should be push to the empty array
-      }
-    }
-  } catch (err) {
-    _didIteratorError3 = true;
-    _iteratorError3 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-        _iterator3["return"]();
-      }
-    } finally {
-      if (_didIteratorError3) {
-        throw _iteratorError3;
-      }
-    }
-  }
-
-  return arr; //return set1; // return first set for unique value in both set and if want to find dublicate value go for return second set2
-} // end of function
+    this.limit = limit; // assign the default limit which is 14
+  } // private method
 
 
-console.log(symetricDifference([1, 2, 3, 4, 5], [3, 4, 5, 6])); // the question is why it did not include 6
-// find sum of two to targer the desired number
+  _createClass(HashMap, [{
+    key: "_has",
+    value: function _has(key, max) {
+      // declaring value and max limit
+      var hash = 0; // local variable default 0
 
-function findSum(num, target) {
-  var numSet = new Set();
+      for (var i = 0; i < key.length; i++) {
+        // loop through the value 
+        hash += key.charCodeAt(i); // the local varible hash assigned with aschii character limit
+      } // end of four loop
 
-  for (var i = 0; i < num.length; i++) {
-    var complement = target - num[i];
 
-    if (numSet.has(complement)) {
-      return [num.indexOf(complement), i];
-    }
+      return hash % max; // return hash with reminder against max
+    } // end of private method
 
-    numSet.add(num[i]);
-  }
+  }]);
 
-  return [];
-}
+  return HashMap;
+}(); // test value
 
-var result = [7, 2, 3, 5, 6, 8];
-console.log(findSum(result, 8));
+
+var hastTable = new HashMap();
+
+var result = hastTable._has('Jhon', hastTable.limit);
+
+console.log(result);
