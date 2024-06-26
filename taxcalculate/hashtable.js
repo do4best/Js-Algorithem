@@ -121,43 +121,90 @@ index(key) is the main part of the game is
 // console.log(findSum(result,8))
 // 25-06-24
 // finding the longest sequence
-function findingLongestSequence(num){
-  const numSet = new Set(num);
-  let longestSequence = 0;
-  for (let num of numSet){
-    if(!numSet.has(num-1)){
-      let currentNum = num;
-      let currentSequence = 1;
-      while(numSet.has(currentNum+1)){
-        currentNum++;
-        currentSequence++;
-      }
-      longestSequence = Math.max(longestSequence,currentNum)
+// function findingLongestSequence(num){
+//   const numSet = new Set(num);
+//   let longestSequence = 0;
+//   for (let num of numSet){
+//     if(!numSet.has(num-1)){
+//       let currentNum = num;
+//       let currentSequence = 1;
+//       while(numSet.has(currentNum+1)){
+//         currentNum++;
+//         currentSequence++;
+//       }
+//       longestSequence = Math.max(longestSequence,currentNum)
 
-    }
+//     }
    
-  }
-  return longestSequence;
-}
-console.log(findingLongestSequence([23,4,5,6,8,10,22,33,44]))
-// hash table example (custome new Map)
-class HashMap{ // declaring the hashMap
-  constructor(limit=14){ // constructor with default limit
-    this.storage=[]; // storage array 
-    this.limit=limit // assign the default limit which is 14
-  }
-  // private method
-  _has(key,max){ // declaring value and max limit
-    let hash=0; // local variable default 0
-    for(let i=0; i<key.length; i++){ // loop through the value 
-      hash += key.charCodeAt(i); // the local varible hash assigned with aschii character limit
-    }// end of four loop
-    return hash % max; // return hash with reminder against max
+//   }
+//   return longestSequence;
+// }
+// console.log(findingLongestSequence([23,4,5,6,8,10,22,33,44]))
+// // hash table example (custome new Map)
+// class HashMap{ // declaring the hashMap
+//   constructor(limit=14){ // constructor with default limit
+//     this.storage=[]; // storage array 
+//     this.limit=limit // assign the default limit which is 14
+//   }
+//   // private method
+//   _has(key1,max){ // declaring value and max limit
+//     let hash=0; // local variable default 0
+//     for(let i=0; i<key1.length; i++){ // loop through the value 
+//       hash += key1.charCodeAt(i); // the local varible hash assigned with aschii character limit
+//     }// end of four loop
+//     return hash % max; // return hash with reminder against max
 
-  }// end of private method
-}
-// test value
-const hastTable = new HashMap();
+//   }// end of private method
+//   printTable(){
+//     for(let i=0; i<this.storage.length; i++){
+//       if(this.storage[i] !== undefined){
+//         console.log(`Bucket ${i}: ${JSON.stringify(this.storage[i])}`)
+//       }else{
+//         console.log(`Bucket ${i}`)
+//       }
+//     }
+//   }
+//   set(key,value){
+//     const index = this._has(key,this.limit)
+//     if(this.storage[index] === undefined){
+//       this.storage[index] = [[key,value]]
+//     }else{
+//       let inserted = false;
+//     }
+//     for(let i=0; i<this.storage[index].length; i++){
+//       if(this.storage[index][i][0] === key){
+//         this.storage[index][i][1] = value;
+//         inserted = true;
+//       }
+//     }
+//     if(inserted === false){
+//       this.storage[index].push([key,value])
+//     }
+//   }
+//  }
+// // test value
+// const hastTable = new HashMap();
 
-let result = hastTable._has('Jhon',hastTable.limit)
-console.log(result) 
+// hastTable.set(["Hell","562892"])
+// failed in has table due to errot charCodeAt() not Define
+// repeting a word in a sentence
+function wordInstanceCounter(str,word){
+  const words = str.toLowerCase().split(/\W+/);
+  const wordFrequency = new Map();
+  const targetWord = word.toLowerCase()
+  let count=0;
+  for(const currentWord of words){
+if(currentWord === '') continue;
+if(wordFrequency.has(currentWord)){
+  wordFrequency.set(currentWord,wordFrequency.get(currentWord) + 1)
+}else{
+  wordFrequency.set(currentWord,1)
+}
+if(currentWord === targetWord){
+  count = wordFrequency.get(currentWord)
+}
+
+  }
+  return count;
+}
+console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))

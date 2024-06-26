@@ -1,11 +1,5 @@
 "use strict";
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -124,27 +118,91 @@ index(key) is the main part of the game is
 // console.log(findSum(result,8))
 // 25-06-24
 // finding the longest sequence
-function findingLongestSequence(num) {
-  var numSet = new Set(num);
-  var longestSequence = 0;
+// function findingLongestSequence(num){
+//   const numSet = new Set(num);
+//   let longestSequence = 0;
+//   for (let num of numSet){
+//     if(!numSet.has(num-1)){
+//       let currentNum = num;
+//       let currentSequence = 1;
+//       while(numSet.has(currentNum+1)){
+//         currentNum++;
+//         currentSequence++;
+//       }
+//       longestSequence = Math.max(longestSequence,currentNum)
+//     }
+//   }
+//   return longestSequence;
+// }
+// console.log(findingLongestSequence([23,4,5,6,8,10,22,33,44]))
+// // hash table example (custome new Map)
+// class HashMap{ // declaring the hashMap
+//   constructor(limit=14){ // constructor with default limit
+//     this.storage=[]; // storage array 
+//     this.limit=limit // assign the default limit which is 14
+//   }
+//   // private method
+//   _has(key1,max){ // declaring value and max limit
+//     let hash=0; // local variable default 0
+//     for(let i=0; i<key1.length; i++){ // loop through the value 
+//       hash += key1.charCodeAt(i); // the local varible hash assigned with aschii character limit
+//     }// end of four loop
+//     return hash % max; // return hash with reminder against max
+//   }// end of private method
+//   printTable(){
+//     for(let i=0; i<this.storage.length; i++){
+//       if(this.storage[i] !== undefined){
+//         console.log(`Bucket ${i}: ${JSON.stringify(this.storage[i])}`)
+//       }else{
+//         console.log(`Bucket ${i}`)
+//       }
+//     }
+//   }
+//   set(key,value){
+//     const index = this._has(key,this.limit)
+//     if(this.storage[index] === undefined){
+//       this.storage[index] = [[key,value]]
+//     }else{
+//       let inserted = false;
+//     }
+//     for(let i=0; i<this.storage[index].length; i++){
+//       if(this.storage[index][i][0] === key){
+//         this.storage[index][i][1] = value;
+//         inserted = true;
+//       }
+//     }
+//     if(inserted === false){
+//       this.storage[index].push([key,value])
+//     }
+//   }
+//  }
+// // test value
+// const hastTable = new HashMap();
+// hastTable.set(["Hell","562892"])
+// failed in has table due to errot charCodeAt() not Define
+// repeting a word in a sentence
+function wordInstanceCounter(str, word) {
+  var words = str.toLowerCase().split(/\W+/);
+  var wordFrequency = new Map();
+  var targetWord = word.toLowerCase();
+  var count = 0;
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
 
   try {
-    for (var _iterator = numSet[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var _num = _step.value;
+    for (var _iterator = words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var currentWord = _step.value;
+      if (currentWord === '') continue;
 
-      if (!numSet.has(_num - 1)) {
-        var currentNum = _num;
-        var currentSequence = 1;
+      if (wordFrequency.has(currentWord)) {
+        wordFrequency.set(currentWord, wordFrequency.get(currentWord) + 1);
+      } else {
+        wordFrequency.set(currentWord, 1);
+      }
 
-        while (numSet.has(currentNum + 1)) {
-          currentNum++;
-          currentSequence++;
-        }
-
-        longestSequence = Math.max(longestSequence, currentNum);
+      if (currentWord === targetWord) {
+        count = wordFrequency.get(currentWord);
       }
     }
   } catch (err) {
@@ -162,50 +220,7 @@ function findingLongestSequence(num) {
     }
   }
 
-  return longestSequence;
+  return count;
 }
 
-console.log(findingLongestSequence([23, 4, 5, 6, 8, 10, 22, 33, 44])); // hash table example (custome new Map)
-
-var HashMap =
-/*#__PURE__*/
-function () {
-  // declaring the hashMap
-  function HashMap() {
-    var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 14;
-
-    _classCallCheck(this, HashMap);
-
-    // constructor with default limit
-    this.storage = []; // storage array 
-
-    this.limit = limit; // assign the default limit which is 14
-  } // private method
-
-
-  _createClass(HashMap, [{
-    key: "_has",
-    value: function _has(key, max) {
-      // declaring value and max limit
-      var hash = 0; // local variable default 0
-
-      for (var i = 0; i < key.length; i++) {
-        // loop through the value 
-        hash += key.charCodeAt(i); // the local varible hash assigned with aschii character limit
-      } // end of four loop
-
-
-      return hash % max; // return hash with reminder against max
-    } // end of private method
-
-  }]);
-
-  return HashMap;
-}(); // test value
-
-
-var hastTable = new HashMap();
-
-var result = hastTable._has('Jhon', hastTable.limit);
-
-console.log(result);
+console.log(wordInstanceCounter("this is a man of word and it is nice", 'is'));
