@@ -164,6 +164,7 @@ index(key) is the main part of the game is
 //       }
 //     }
 //   }
+// 26-6-24
 //   set(key,value){
 //     const index = this._has(key,this.limit)
 //     if(this.storage[index] === undefined){
@@ -188,23 +189,65 @@ index(key) is the main part of the game is
 // hastTable.set(["Hell","562892"])
 // failed in has table due to errot charCodeAt() not Define
 // repeting a word in a sentence
-function wordInstanceCounter(str,word){
-  const words = str.toLowerCase().split(/\W+/);
-  const wordFrequency = new Map();
-  const targetWord = word.toLowerCase()
-  let count=0;
-  for(const currentWord of words){
-if(currentWord === '') continue;
-if(wordFrequency.has(currentWord)){
-  wordFrequency.set(currentWord,wordFrequency.get(currentWord) + 1)
-}else{
-  wordFrequency.set(currentWord,1)
-}
-if(currentWord === targetWord){
-  count = wordFrequency.get(currentWord)
-}
+// function wordInstanceCounter(str,word){ // word encounter repition
+//   const words = str.toLowerCase().split(/\W+/);  // make the first parameter which is in fact a sentence should be in lower case exclude the empty spaces
+//   const wordFrequency = new Map(); // create a data structure
+//   const targetWord = word.toLowerCase() // // make the second argument to lowr case
+//   let count=0; // initial a counter with zero
+//   for(const currentWord of words){ // iterate first argument i mean the sentence and stroe the value in current word
+// if(currentWord === '') continue; // if current word is a space it should move on
+// if(wordFrequency.has(currentWord)){ // if map data structure find the looped word
+//   wordFrequency.set(currentWord,wordFrequency.get(currentWord) + 1) // it should set the loop word as index and return with addition 
+// }else{ //otherwise
+//   wordFrequency.set(currentWord,1) // if not true it should make the current word index and value from one.
+// }
+// if(currentWord === targetWord){ // if the current word is as same as searched value 
+//   count = wordFrequency.get(currentWord) // it should be same output
+// }
 
+//   }// end of iterator
+//   return count;// return count
+// }
+// console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))
+// Stack datastructure implementation
+class Stack{
+  constructor(){
+    this.maxSize = 100;
+    this.stack = []
+    this.top = -1
   }
-  return count;
+  push(value){
+    if(this.isFull()){
+      return false;
+    }
+    this.top++;
+    this.stack[this.top] = value;
+    return true;
+  }
+  pop(){
+    if(this.isEmpty()){
+      return null;
+    }
+    this.top--;
+    return this.stack.pop();
+  }
+  isEmpty(){
+    return this.top === this.maxSize - 1;
+  }
+  isPeek(){
+    if(this.isEmpty()){
+      return null;
+    }
+    return this.stack[this.top]
+  }
+  isFull(){
+    return this.top === this.maxSize - 1;
+  }
 }
-console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))
+let stack = new Stack()
+
+stack.push("hello")
+stack.push("world")
+console.log(stack)
+
+console.log(stack)

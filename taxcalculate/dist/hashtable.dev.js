@@ -1,5 +1,11 @@
 "use strict";
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 // Has Table
 // A data structure that implements an associative array of abstruct type with kay/value pairs
 // time complexity is O(1) which means it constant no matter how much you input it result will be show in no time
@@ -158,6 +164,7 @@ index(key) is the main part of the game is
 //       }
 //     }
 //   }
+// 26-6-24
 //   set(key,value){
 //     const index = this._has(key,this.limit)
 //     if(this.storage[index] === undefined){
@@ -181,46 +188,84 @@ index(key) is the main part of the game is
 // hastTable.set(["Hell","562892"])
 // failed in has table due to errot charCodeAt() not Define
 // repeting a word in a sentence
-function wordInstanceCounter(str, word) {
-  var words = str.toLowerCase().split(/\W+/);
-  var wordFrequency = new Map();
-  var targetWord = word.toLowerCase();
-  var count = 0;
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+// function wordInstanceCounter(str,word){ // word encounter repition
+//   const words = str.toLowerCase().split(/\W+/);  // make the first parameter which is in fact a sentence should be in lower case exclude the empty spaces
+//   const wordFrequency = new Map(); // create a data structure
+//   const targetWord = word.toLowerCase() // // make the second argument to lowr case
+//   let count=0; // initial a counter with zero
+//   for(const currentWord of words){ // iterate first argument i mean the sentence and stroe the value in current word
+// if(currentWord === '') continue; // if current word is a space it should move on
+// if(wordFrequency.has(currentWord)){ // if map data structure find the looped word
+//   wordFrequency.set(currentWord,wordFrequency.get(currentWord) + 1) // it should set the loop word as index and return with addition 
+// }else{ //otherwise
+//   wordFrequency.set(currentWord,1) // if not true it should make the current word index and value from one.
+// }
+// if(currentWord === targetWord){ // if the current word is as same as searched value 
+//   count = wordFrequency.get(currentWord) // it should be same output
+// }
+//   }// end of iterator
+//   return count;// return count
+// }
+// console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))
+// Stack datastructure implementation
+var Stack =
+/*#__PURE__*/
+function () {
+  function Stack() {
+    _classCallCheck(this, Stack);
 
-  try {
-    for (var _iterator = words[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var currentWord = _step.value;
-      if (currentWord === '') continue;
-
-      if (wordFrequency.has(currentWord)) {
-        wordFrequency.set(currentWord, wordFrequency.get(currentWord) + 1);
-      } else {
-        wordFrequency.set(currentWord, 1);
-      }
-
-      if (currentWord === targetWord) {
-        count = wordFrequency.get(currentWord);
-      }
-    }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
+    this.maxSize = 100;
+    this.stack = [];
+    this.top = -1;
   }
 
-  return count;
-}
+  _createClass(Stack, [{
+    key: "push",
+    value: function push(value) {
+      if (this.isFull()) {
+        return false;
+      }
 
-console.log(wordInstanceCounter("this is a man of word and it is nice", 'is'));
+      this.top++;
+      this.stack[this.top] = value;
+      return true;
+    }
+  }, {
+    key: "pop",
+    value: function pop() {
+      if (this.isEmpty()) {
+        return null;
+      }
+
+      this.top--;
+      return this.stack.pop();
+    }
+  }, {
+    key: "isEmpty",
+    value: function isEmpty() {
+      return this.top === this.maxSize - 1;
+    }
+  }, {
+    key: "isPeek",
+    value: function isPeek() {
+      if (this.isEmpty()) {
+        return null;
+      }
+
+      return this.stack[this.top];
+    }
+  }, {
+    key: "isFull",
+    value: function isFull() {
+      return this.top === this.maxSize - 1;
+    }
+  }]);
+
+  return Stack;
+}();
+
+var stack = new Stack();
+stack.push("hello");
+stack.push("world");
+console.log(stack);
+console.log(stack);
