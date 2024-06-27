@@ -210,44 +210,106 @@ index(key) is the main part of the game is
 // }
 // console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))
 // Stack datastructure implementation
-class Stack{
+// class Stack{ // imperative Stack class is implemented
+//   constructor(){ // the constructor has theree variable
+//     this.maxSize = 100; // this max size is 100
+//     this.stack = [] // an empty array
+//     this.top = -1 // form top it is result not zero
+//   }
+//   push(value){ // make it push to the stack
+//     if(this.isFull()){ // this is full
+//       return false; // do nothing and return false
+//     }
+//     this.top++; // it should increment to the top
+//     this.stack[this.top] = value; // and stor in the array by way of top
+//     return true; // and return true
+//   }
+//   pop(){ // make it to remove from top
+//     if(this.isEmpty()){ // if it is empty
+//       return null; // it should return false;
+//     }
+//     this.top--; // remove it from top
+//     return this.stack.pop(); // as it is an array it should be remove from array too
+//   }
+//   isEmpty(){ // define the empty
+//     return this.top === this.maxSize - 1; // if top and max size has nothing to show
+//   }
+//   isPeek(){ // look at last value store in the Stack
+//     if(this.isEmpty()){ // if it is empty reutn nothing
+//       return null;
+//     }
+//     return this.stack[this.top] // loop at the top
+//   }
+//   isFull(){
+//     return this.top === this.maxSize - 1;
+//   }
+// }
+// let stack = new Stack()
+
+// stack.push("hello")
+// stack.push("world")
+// console.log(stack)
+
+// console.log(stack)
+// 27-06-24
+// // reverse String using Stack DS
+// function reverseString(str){
+// let reverseStack = new Stack()
+// for(let i=0; i<str.length; i++){
+//   reverseStack.push(str[i])
+// }
+// let revrseString;
+// while(!reverseStack.isEmpty()){
+//   reverseString += reverseStack.pop() 
+// }
+// return reverseString
+// }
+
+// let wrod= "Hello World"
+// console.log(reverseString(wrod))
+// Que Data Structure
+class Queue{
   constructor(){
+    this.queue = [];
+    this.head = 0;
+    this.tail = 0;
     this.maxSize = 100;
-    this.stack = []
-    this.top = -1
+
   }
-  push(value){
+  enqueue(item){
     if(this.isFull()){
       return false;
     }
-    this.top++;
-    this.stack[this.top] = value;
+    this.queue[this.tail] = item;
+    this.tail++;
     return true;
+
   }
-  pop(){
-    if(this.isEmpty()){
-      return null;
-    }
-    this.top--;
-    return this.stack.pop();
+  dequeue(){
+    const item = this.queue[this.head];
+    this.head++;
+    return item;
+  }
+  peek(){
+    return this.queue[this.head]
+  }
+  getLength(){
+    return this.tail - this.head;
   }
   isEmpty(){
-    return this.top === this.maxSize - 1;
-  }
-  isPeek(){
-    if(this.isEmpty()){
-      return null;
-    }
-    return this.stack[this.top]
+    return this.getLength === 0;
   }
   isFull(){
-    return this.top === this.maxSize - 1;
+    return this.getLength() === this.maxSize; 
+  }
+  dequeue(){
+
   }
 }
-let stack = new Stack()
-
-stack.push("hello")
-stack.push("world")
-console.log(stack)
-
-console.log(stack)
+let que = new Queue();
+que.enqueue('a')
+que.enqueue('b')
+console.log(que)
+que.dequeue()
+console.log(que)
+console.log(que.peek())

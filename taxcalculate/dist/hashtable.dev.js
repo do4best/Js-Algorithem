@@ -208,64 +208,123 @@ index(key) is the main part of the game is
 // }
 // console.log(wordInstanceCounter("this is a man of word and it is nice",'is'))
 // Stack datastructure implementation
-var Stack =
+// class Stack{ // imperative Stack class is implemented
+//   constructor(){ // the constructor has theree variable
+//     this.maxSize = 100; // this max size is 100
+//     this.stack = [] // an empty array
+//     this.top = -1 // form top it is result not zero
+//   }
+//   push(value){ // make it push to the stack
+//     if(this.isFull()){ // this is full
+//       return false; // do nothing and return false
+//     }
+//     this.top++; // it should increment to the top
+//     this.stack[this.top] = value; // and stor in the array by way of top
+//     return true; // and return true
+//   }
+//   pop(){ // make it to remove from top
+//     if(this.isEmpty()){ // if it is empty
+//       return null; // it should return false;
+//     }
+//     this.top--; // remove it from top
+//     return this.stack.pop(); // as it is an array it should be remove from array too
+//   }
+//   isEmpty(){ // define the empty
+//     return this.top === this.maxSize - 1; // if top and max size has nothing to show
+//   }
+//   isPeek(){ // look at last value store in the Stack
+//     if(this.isEmpty()){ // if it is empty reutn nothing
+//       return null;
+//     }
+//     return this.stack[this.top] // loop at the top
+//   }
+//   isFull(){
+//     return this.top === this.maxSize - 1;
+//   }
+// }
+// let stack = new Stack()
+// stack.push("hello")
+// stack.push("world")
+// console.log(stack)
+// console.log(stack)
+// 27-06-24
+// // reverse String using Stack DS
+// function reverseString(str){
+// let reverseStack = new Stack()
+// for(let i=0; i<str.length; i++){
+//   reverseStack.push(str[i])
+// }
+// let revrseString;
+// while(!reverseStack.isEmpty()){
+//   reverseString += reverseStack.pop() 
+// }
+// return reverseString
+// }
+// let wrod= "Hello World"
+// console.log(reverseString(wrod))
+// Que Data Structure
+var Queue =
 /*#__PURE__*/
 function () {
-  function Stack() {
-    _classCallCheck(this, Stack);
+  function Queue() {
+    _classCallCheck(this, Queue);
 
+    this.queue = [];
+    this.head = 0;
+    this.tail = 0;
     this.maxSize = 100;
-    this.stack = [];
-    this.top = -1;
   }
 
-  _createClass(Stack, [{
-    key: "push",
-    value: function push(value) {
+  _createClass(Queue, [{
+    key: "enqueue",
+    value: function enqueue(item) {
       if (this.isFull()) {
         return false;
       }
 
-      this.top++;
-      this.stack[this.top] = value;
+      this.queue[this.tail] = item;
+      this.tail++;
       return true;
     }
   }, {
-    key: "pop",
-    value: function pop() {
-      if (this.isEmpty()) {
-        return null;
-      }
-
-      this.top--;
-      return this.stack.pop();
+    key: "dequeue",
+    value: function dequeue() {
+      var item = this.queue[this.head];
+      this.head++;
+      return item;
+    }
+  }, {
+    key: "peek",
+    value: function peek() {
+      return this.queue[this.head];
+    }
+  }, {
+    key: "getLength",
+    value: function getLength() {
+      return this.tail - this.head;
     }
   }, {
     key: "isEmpty",
     value: function isEmpty() {
-      return this.top === this.maxSize - 1;
-    }
-  }, {
-    key: "isPeek",
-    value: function isPeek() {
-      if (this.isEmpty()) {
-        return null;
-      }
-
-      return this.stack[this.top];
+      return this.getLength === 0;
     }
   }, {
     key: "isFull",
     value: function isFull() {
-      return this.top === this.maxSize - 1;
+      return this.getLength() === this.maxSize;
     }
+  }, {
+    key: "dequeue",
+    value: function dequeue() {}
   }]);
 
-  return Stack;
+  return Queue;
 }();
 
-var stack = new Stack();
-stack.push("hello");
-stack.push("world");
-console.log(stack);
-console.log(stack);
+var que = new Queue();
+que.enqueue('a');
+que.enqueue('b');
+console.log(que);
+que.dequeue();
+console.log(que);
+console.log(que.peek());
