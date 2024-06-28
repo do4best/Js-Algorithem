@@ -313,18 +313,19 @@ function () {
     value: function isFull() {
       return this.getLength() === this.maxSize;
     }
-  }, {
-    key: "dequeue",
-    value: function dequeue() {}
   }]);
 
   return Queue;
-}();
-
-var que = new Queue();
-que.enqueue('a');
-que.enqueue('b');
-console.log(que);
-que.dequeue();
-console.log(que);
-console.log(que.peek());
+}(); // function reverseString(str){
+//   const que = new Queue();
+//   for(let i=str.length-1; i>=0; i--){
+//     que.enqueue(str[i])
+//   }
+//   let string1 = ""
+//   while(!que.isEmpty()){
+//     string1 += que.dequeue(str)
+//   }
+//   return string1;
+// }
+// let words = 'Hello world';
+// reverseString(words)
