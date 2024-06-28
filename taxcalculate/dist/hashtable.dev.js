@@ -329,3 +329,59 @@ function () {
 // }
 // let words = 'Hello world';
 // reverseString(words)
+// understanding linked list
+
+
+var Node = function Node(data) {
+  _classCallCheck(this, Node);
+
+  this.node = data;
+  this.next = null;
+};
+
+var LinkedList =
+/*#__PURE__*/
+function () {
+  function LinkedList() {
+    _classCallCheck(this, LinkedList);
+
+    this.head = null;
+    this.tail = null;
+  }
+
+  _createClass(LinkedList, [{
+    key: "add",
+    value: function add(data) {
+      var node = new Node(data);
+
+      if (this.head === null) {
+        this.head = node;
+      } else {
+        this.tail.next = node;
+      }
+
+      this.tail = node;
+      return node;
+    }
+  }, {
+    key: "printAll",
+    value: function printAll() {
+      var current = this.head;
+
+      while (current !== null) {
+        console.log(current.data);
+        current = current.next;
+      }
+
+      return current;
+    }
+  }]);
+
+  return LinkedList;
+}();
+
+var link = new LinkedList();
+link.add(100);
+link.add(200);
+link.add(300);
+link.printAll();

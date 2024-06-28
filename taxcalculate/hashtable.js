@@ -319,3 +319,41 @@ class Queue{
 // }
 // let words = 'Hello world';
 // reverseString(words)
+// understanding linked list
+class Node{
+  constructor(data){
+    this.node = data;
+    this.next = null;
+  }
+}
+class LinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null
+
+  }
+  add(data){
+    const node = new Node(data)
+    if(this.head === null){
+      this.head = node;
+
+    }else{
+      this.tail.next = node;
+    }
+    this.tail = node;
+    return node;
+  }
+  printAll(){
+    let current = this.head;
+    while(current !== null){
+      console.log(current.data)
+      current = current.next
+    }
+    return current;
+  }
+}
+let link = new LinkedList();
+link.add(100)
+link.add(200)
+link.add(300)
+link.printAll()
