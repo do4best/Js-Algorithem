@@ -357,3 +357,13 @@ link.add(100)
 link.add(200)
 link.add(300)
 link.printAll()
+let counter=0;
+while(counter <= 5){
+  console.log(counter + "")
+  counter++;
+}
+let arr=[1,2,3,4]
+console.log(arr)
+let arr2=[4,5,6,7,8]
+let result = arr.splice(0,arr2)
+console.log(result)

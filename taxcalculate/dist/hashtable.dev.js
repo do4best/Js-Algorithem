@@ -385,3 +385,15 @@ link.add(100);
 link.add(200);
 link.add(300);
 link.printAll();
+var counter = 0;
+
+while (counter <= 5) {
+  console.log(counter + "");
+  counter++;
+}
+
+var arr = [1, 2, 3, 4];
+console.log(arr);
+var arr2 = [4, 5, 6, 7, 8];
+var result = arr.splice(0, arr2);
+console.log(result);
