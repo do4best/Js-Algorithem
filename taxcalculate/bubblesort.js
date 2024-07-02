@@ -15,3 +15,20 @@ function bubbleSort(arr){
 
 let values = [2,5,1,3,9,6,8,7]
 console.log(bubbleSort(values))
+// 02-07-24
+//inseration sort
+function inserationSort(arr){
+    let arrLength = arr.length; // assign the length;
+    for(let i=0; i<arrLength; i++){ // loop over the array parameter
+        const currentEle = arr[i]; // store the array[i] in current Element
+        let j = i-1; // assign another variable non zero loop 
+        while(j > 0  && arr[j] > currentEle){ // while none zero loop is greater then 0 and array looped is greater then current element
+            arr[j+1] = arr[j] // it should step forword
+            j--; // and reduces
+        }
+        arr[j+1] = currentEle // current element is increated
+    }
+    return arr; // return the value
+}
+
+console.log(inserationSort(values))
