@@ -32,3 +32,20 @@ function inserationSort(arr){
 }
 
 console.log(inserationSort(values))
+/// 04/07/24
+function selectionSort(arr){// define a selection sort
+    let Length = arr.length; // initlize array length
+    for(let i=0; i<Length; i++){ // loop through array
+        let minIndex = i; // let first index placed
+        for(let j=i+1; j<Length; j++){ // let loop to the remaining element
+            if(arr[j]<arr[minIndex]){ // decide if loop array is less then minimal index remeber it is previously placed first if true
+                minIndex = j; // make the remaining to min index
+            }
+        }// end of four loop
+        if(minIndex !== i){// min index is not equal to looped array
+            [arr[i],arr[minIndex]] = [arr[minIndex],arr[i]] // it should be swapped
+        }
+    }
+    return arr;
+}
+console.log(selectionSort(values))

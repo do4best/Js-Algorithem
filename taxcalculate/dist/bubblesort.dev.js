@@ -46,4 +46,34 @@ function inserationSort(arr) {
   return arr; // return the value
 }
 
-console.log(inserationSort(values));
+console.log(inserationSort(values)); /// 04/07/24
+
+function selectionSort(arr) {
+  // define a selection sort
+  var Length = arr.length; // initlize array length
+
+  for (var i = 0; i < Length; i++) {
+    // loop through array
+    var minIndex = i; // let first index placed
+
+    for (var j = i + 1; j < Length; j++) {
+      // let loop to the remaining element
+      if (arr[j] < arr[minIndex]) {
+        // decide if loop array is less then minimal index remeber it is previously placed first if true
+        minIndex = j; // make the remaining to min index
+      }
+    } // end of four loop
+
+
+    if (minIndex !== i) {
+      // min index is not equal to looped array
+      var _ref = [arr[minIndex], arr[i]];
+      arr[i] = _ref[0];
+      arr[minIndex] = _ref[1];
+    }
+  }
+
+  return arr;
+}
+
+console.log(selectionSort(values));
