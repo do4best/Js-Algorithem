@@ -76,4 +76,37 @@ function selectionSort(arr) {
   return arr;
 }
 
-console.log(selectionSort(values));
+console.log(selectionSort(values)); /////// Merge Sort Example
+/// 05/07/24
+
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  var mid = Math.floor(arr.length / 2);
+  var left = mergeSort(arr.slice(0, mid));
+  var right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+function merge(left, right) {
+  var merged = [];
+  var leftIndex = 0,
+      rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      merged.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      merged.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return merged.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+
+var arra = [2, 4, 5, 3, 9, 8, 1];
+console.log(mergeSort(arra));
